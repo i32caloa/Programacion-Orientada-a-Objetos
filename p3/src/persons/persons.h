@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-class Persons{
+class Person{
 
     private:
 
@@ -13,8 +13,8 @@ class Persons{
 
     public:
 
-        Persons();
-        Persons(const std::string name, int birth_year);
+        Person();
+        Person(const std::string name, int birth_year);
 
     //*****************//
     //*****Getters*****//
@@ -32,7 +32,7 @@ class Persons{
 
 };
 
-class Cyclist : public Persons{
+class Cyclist : public Person{
 
     private:
 
@@ -60,7 +60,7 @@ class Cyclist : public Persons{
 
 };
 
-class Director : public Persons{
+class Director : public Person{
 
     private:
 
@@ -91,8 +91,8 @@ class Director : public Persons{
 
 };
 
-Persons ReadPersonsFromConsole();
-void PrintPersonsFromConsole(Persons &Persona);
+Person ReadPersonFromConsole();
+void PrintPersonFromConsole(Person &Persona);
 
 Cyclist ReadCyclistsFromConsole();
 void PrintCyclistsFromConsole(Cyclist &Cyclista);

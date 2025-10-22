@@ -5,7 +5,7 @@
 int main(){
 
 
-    Persons Persona("Temp", -1);
+    Person Persona("Temp", -1);
     Cyclist Ciclista("Temp", -1, "Temp", "Temp");
     Director Directo("Temp", -1, "Temp", "Temp", -1);
     int x;
@@ -13,7 +13,7 @@ int main(){
     do{
 
         std::cout<<"\n********Menu********\n";
-        std::cout<<"\n1. Persons";
+        std::cout<<"\n1. Person";
         std::cout<<"\n2. Cyclists";
         std::cout<<"\n3. Director";
         std::cout<<"\n********************\n";
@@ -24,8 +24,8 @@ int main(){
         switch(x){
         case 1:
             
-            Persona = ReadPersonsFromConsole();
-            PrintPersonsFromConsole(Persona);
+            Persona = ReadPersonFromConsole();
+            PrintPersonFromConsole(Persona);
 
             break;
         

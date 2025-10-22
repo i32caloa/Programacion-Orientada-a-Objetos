@@ -24,4 +24,3 @@ target_link_libraries(catalog-test
  PRIVATE GTest::gtest_main catalog)
 gtest_discover_tests(catalog-test)
 
-

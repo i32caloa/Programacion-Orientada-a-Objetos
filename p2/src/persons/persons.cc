@@ -1,10 +1,16 @@
+/*
+Fichero Person.cc
+
+Contiene funciones necesarias para el funcionamiento del programa
+
+*/
 #include "persons.h"
 #include <iostream>
 #include <string>
 
 //CONSTRUCTORES VACÍOS
 
-Persons::Persons(){
+Person::Person(){
 
     name_ = "UNKNOWN";
     birth_year_ = -1;
@@ -28,21 +34,21 @@ Director::Director(){
 
 //CONSTRUCTORES
 
-Persons::Persons(const std::string name, int birth_year){ 
+Person::Person(const std::string name, int birth_year){ 
 
     name_ = name;
     birth_year_ = birth_year;
 
 }
 
-Cyclist::Cyclist(const std::string name, int birth_year, const std::string team, const std::string cyclist_id):Persons(name, birth_year){
+Cyclist::Cyclist(const std::string name, int birth_year, const std::string team, const std::string cyclist_id):Person(name, birth_year){
 
     team_ = team;
     cyclist_id_ = cyclist_id;
 
 }
 
-Director::Director(const std::string name, int birth_year, const std::string team, const std::string uci_license_id, int director_since):Persons(name, birth_year){
+Director::Director(const std::string name, int birth_year, const std::string team, const std::string uci_license_id, int director_since):Person(name, birth_year){
 
     team_ = team;
     uci_license_id_ = uci_license_id;
@@ -52,7 +58,7 @@ Director::Director(const std::string name, int birth_year, const std::string tea
 
 //SETTERS
 
-bool Persons::SetName(std::string name){
+bool Person::SetName(std::string name){
 
     if(name.empty()){
         return false;
@@ -62,7 +68,7 @@ bool Persons::SetName(std::string name){
     }
 }
 
-bool Persons::SetBirthYear(int birth_year){
+bool Person::SetBirthYear(int birth_year){
 
     if(birth_year<1950 || birth_year>2007){
         return false;
@@ -124,25 +130,25 @@ bool Director::SetDirectorSince(int director_since){
 
 //Funciones del programa
 
-Persons ReadPersonsFromConsole(){
+Person ReadPersonFromConsole(){
 
     std::string name;
     int birth_year;
 
-    std::cout<<"\n********Persons********\n";
+    std::cout<<"\n********Person********\n";
     std::cout<<"\nName: ";
     std::cin>>name;
     std::cout<<"\nBirth Year: ";
     std::cin>>birth_year;
     std::cout<<"\n***********************\n";
 
-    Persons Personas(name, birth_year);
+    Person Personas(name, birth_year);
 
     return Personas;
 
 }
 
-void PrintPersonsFromConsole(Persons &Persona){
+void PrintPersonFromConsole(Person &Persona){
 
     std::cout<<"\n********Persona*********\n";
     std::cout<<"\nName: "<<Persona.GetName();
@@ -156,7 +162,7 @@ Cyclist ReadCyclistsFromConsole(){
     std::string name, cyclist_id, team;
     int birth_year;
 
-    std::cout<<"\n********Persons********\n";
+    std::cout<<"\n********Person********\n";
     std::cout<<"\nName: ";
     std::cin>>name;
     std::cout<<"\nBirth Year: ";

@@ -1,0 +1,1 @@
+/usr/bin/c++ "CMakeFiles/catalog-test.dir/catalog-test.cc.o" -o catalog-test  ../lib/libgtest_main.a ../src/catalog/libcatalog.a ../lib/libgtest.a ../src/persons/libpersons.a 
