@@ -1,37 +1,35 @@
+#include <iostream>
+#include <string>
+#include <vector>
 #include "catalog.h"
 #include "../persons/persons.h"
-#include <iostream>
-#include <vector>
-#include <iterator>
 
 int main(){
 
-    CyclistCatalog cyclist_catalog;
-    DirectorCatalog director_catalog;
+    CyclistCatalog catalogCyclist;
+    DirectorCatalog catalogDirector;
 
-    if((!cyclist_catalog.Load("/home/antoniocl53/Escritorio/uni/2/1c/poo/p2/data/cyclists.csv")) || (!director_catalog.Load("/home/antoniocl53/Escritorio/uni/2/1c/poo/p2/data/directors.csv"))){
+    if((!catalogCyclist.Load("/home/antoniocl53/Escritorio/uni/2/1c/poo2/p2/build/data/cyclists.csv")) || (!catalogDirector.Load("/home/antoniocl53/Escritorio/uni/2/1c/poo2/p2/build/data/directors.csv"))){
 
-        std::cerr<<"No se cargaron los catalogos\n";
+        std::cerr<<"Error al cargar los catalogos";
 
         exit(EXIT_FAILURE);
-
     }
 
-    std::vector<Cyclist>cc=cyclist_catalog.Data();
-    std::vector<Director>dc=director_catalog.Data();
+    std::vector<Cyclist>cc = catalogCyclist.Data();
+    std::vector<Director>dc = catalogDirector.Data();
 
-    std::cout<<"\nNumero de ciclistas: "<<cc.size()<<"\n";
-
-    for(size_t i=0; i<cc.size(); i++){
-        std::cout<<cc[i].GetName()<<" "<<cc[i].GetBirthYear()<<" "<<cc[i].GetTeam()<<" "<<cc[i].GetCyclistId()<<"\n";
+    std::cout<<"\n--------------------\nCyclist number: "<<cc.size()<<"\n--------------------\n";
+    for(int i=0; i<cc.size(); i++){
+        std::cout<<"\n"<<cc[i].GetName()<<", "<<cc[i].GetBirthYear()<<", "<<cc[i].GetTeam()<<", "<<cc[i].GetCyclistId();
     }
 
-    std::cout<<"\nNumero de directores: "<<dc.size()<<"\n";
+    std::cout<<std::endl;
 
-    for(size_t i=0; i<dc.size(); i++){
-        std::cout<<dc[i].GetName()<<" "<<dc[i].GetBirthYear()<<" "<<dc[i].GetTeam()<<" "<<dc[i].GetUciLicenseId()<<" "<<dc[i].GetDirectorSince()<<"\n";
+    std::cout<<"\n--------------------\nDirector Number: "<<dc.size()<<"\n--------------------\n";
+    for(int i=0; i<dc.size(); i++){
+        std::cout<<"\n"<<dc[i].GetName()<<", "<<dc[i].GetBirthYear()<<", "<<dc[i].GetTeam()<<", "<<dc[i].GetUciLicenseId()<<", "<<dc[i].GetDirectorSince();        
     }
 
     return 0;
-
 }

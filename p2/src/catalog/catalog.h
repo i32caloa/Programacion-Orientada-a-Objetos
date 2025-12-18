@@ -1,8 +1,8 @@
 #ifndef CATALOG_H
 #define CATALOG_H
 
-#include <vector>
 #include "../persons/persons.h"
+#include <vector>
 
 class CyclistCatalog{
 
@@ -14,7 +14,7 @@ class CyclistCatalog{
 
         bool Load(const std::string &path);
         int Size(){return cyclist_.size();}
-        std::vector<Cyclist>Data(){return cyclist_;}
+        std::vector<Cyclist> Data(){return cyclist_;}
 
 };
 
@@ -26,10 +26,10 @@ class DirectorCatalog{
 
     public:
 
-    bool Load(const std::string &path);
-    int Size(){return director_.size();}
-    std::vector<Director>Data(){return director_;}
-
+        bool Load(const std::string &path);
+        int Size(){return director_.size();}
+        std::vector<Director> Data(){return director_;}
 };
+
 
 #endif

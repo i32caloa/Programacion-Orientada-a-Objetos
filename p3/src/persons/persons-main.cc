@@ -40,9 +40,13 @@ int main(){
             Directo = ReadDirectorsFromConsole();
             PrintDirectorsFromConsole(Directo);
             break;
-        }
 
-    } while(x!=4);
+        default: 
+
+            std::cout<<"Saliendo............\n";
+            break;
+        }
+    } while(x>0 && x<4);
 
     return 0;
 }

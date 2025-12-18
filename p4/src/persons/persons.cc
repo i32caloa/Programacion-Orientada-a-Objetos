@@ -1,5 +1,5 @@
 /*
-Fichero persons.cc
+Fichero Person.cc
 
 Contiene funciones necesarias para el funcionamiento del programa
 

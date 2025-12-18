@@ -1,74 +1,76 @@
+#include <iostream>
+#include <string>
+#include <vector>
 #include "catalog.h"
 #include "../persons/persons.h"
-#include <iostream>
-#include <vector>
-#include <iterator>
 
 int main(){
 
-    CyclistCatalog cyclist_catalog;
-    DirectorCatalog director_catalog;
+    CyclistCatalog catalogCyclist;
+    DirectorCatalog catalogDirector;
 
-    if((!cyclist_catalog.Load("/home/antoniocl53/Escritorio/uni/2/1c/poo/p3/data/cyclists.csv")) || (!director_catalog.Load("/home/antoniocl53/Escritorio/uni/2/1c/poo/p3/data/directors.csv"))){
+    std::string team;
+    std::string id;
 
-        std::cerr<<"No se cargaron los catalogos\n";
+    if((!catalogCyclist.Load("../build/data/cyclists.csv")) || (!catalogDirector.Load("../build/data/directors.csv"))){
+
+        std::cerr<<"Error al cargar los catalogos";
 
         exit(EXIT_FAILURE);
-
     }
 
-    //Vector para cada catalogo
+    std::vector<Cyclist>cc = catalogCyclist.Data();
+    std::vector<Director>dc = catalogDirector.Data();
 
-    std::vector<Cyclist> cc = cyclist_catalog.Data();
-    std::vector<Director> dc = director_catalog.Data();
-
-    std::cout<<"\nNumero de ciclistas: "<<cc.size()<<"\n";
-
-    //Muestra ciclistas por pantalla
-
-    for(size_t i=0; i<cc.size(); i++){
-        std::cout<<cc[i].GetName()<<" "<<cc[i].GetBirthYear()<<" "<<cc[i].GetTeam()<<" "<<cc[i].GetCyclistId()<<"\n";
+    std::cout<<"\n--------------------\nCyclist number: "<<cc.size()<<"\n--------------------\n";
+    for(int i=0; i<cc.size(); i++){
+        std::cout<<"\n"<<cc[i].GetName()<<", "<<cc[i].GetBirthYear()<<", "<<cc[i].GetTeam()<<", "<<cc[i].GetCyclistId();
     }
 
-    std::cout<<"\nNumero de directores: "<<dc.size()<<"\n";
+    std::cout<<std::endl;
 
-    //Muestra directores por pantalla
-
-    for(size_t i=0; i<dc.size(); i++){
-        std::cout<<dc[i].GetName()<<" "<<dc[i].GetBirthYear()<<" "<<dc[i].GetTeam()<<" "<<dc[i].GetUciLicenseId()<<" "<<dc[i].GetDirectorSince()<<"\n";
+    std::cout<<"\n--------------------\nDirector Number: "<<dc.size()<<"\n--------------------\n";
+    for(int i=0; i<dc.size(); i++){
+        std::cout<<"\n"<<dc[i].GetName()<<", "<<dc[i].GetBirthYear()<<", "<<dc[i].GetTeam()<<", "<<dc[i].GetUciLicenseId()<<", "<<dc[i].GetDirectorSince();        
     }
 
-    return 0;
+//Práctica 3, hacer GetTeam(), GetByTeam(), GetYoungest()
 
-    //Practica 3
+    std::cout<<"\n------------------------------------\nIntroduce el nombre del equipo: ";
+    std::getline(std::cin, team);
+    std::cout<<"\n------------------------------------\n";
 
-    std::string equipo;
-    std::cout<<"\nIntroducir el nombre del equipo: "; //Obtenemos el equipo por teclado
-    std::getline(std::cin, equipo);
-
-    std::vector<Cyclist> v = cyclist_catalog.GetByTeam(equipo); //Obtenemos el vector con los ciclistas que hay en el equipo
-    if(v.size()==0){
-        std::cout<<"\nNo hay ciclistas en el equipo\n";
-    } else{
-        std::cout<<"\nCiclistas: "<<equipo<<"\n";
-        for(size_t i = 0; i<v.size(); i++){
-            std::cout<<v[i].GetName()<<"\n";
+    std::vector<Cyclist>vCyclist = catalogCyclist.GetByTeam(team);
+    if(vCyclist.size()==0){
+        std::cout<<"\nNo hay cislistas en este equipo\n";
+        exit(EXIT_FAILURE);
+    } else {
+        std::cout<<"\nCyclist "<<team<<"\n";
+        for(int i=0; i<vCyclist.size(); i++){
+            std::cout<<"\n"<<vCyclist[i].GetName();
         }
     }
 
-    std::vector<Cyclist> menor = cyclist_catalog.GetYoungest(); //Obtenemos el vector con los ciclistas mas jovenes
-    std::cout<<"\nCiclista mas joven: "<<menor[0].GetName()<<"\n";
+    std::cout<<"\n\nCiclista/s mas jovenes: ";
 
-    std::string id; 
-    std::cout<<"\nID del ciclista: ";
-
-    std::getline(std::cin, id);
-    std::string team = cyclist_catalog.GetTeam(id); //Obtenemos el equipo por el id del ciclista
-    if(team == ""){
-        std::cout<<"\nNo existe el ciclista con ID "<<id<<"\n";
-    } else{
-        std::cout<<"\nCiclista "<<id<<", Equipo "<<team<<"\n";
+    std::vector<Cyclist> youngest = catalogCyclist.GetYoungest();
+    for(int i=0; i<youngest.size(); i++){
+        std::cout<<youngest[i].GetName()<<", "<<youngest[i].GetBirthYear()<<", "<<youngest[i].GetTeam()<<", "<<youngest[i].GetCyclistId()<<"\n";
     }
-    return 0;
 
+
+
+    std::cout<<"\n-------------------------------------------------\nIntroduce el Id del ciclista para ver el equipo: ";
+    std::getline(std::cin, id);
+    std::cout<<"\n-------------------------------------------------\n";
+
+    std::string searchTeam = catalogCyclist.GetTeam(id);
+    if(searchTeam.empty()){
+        std::cout<<"\nNo se ha encontrado equipo para esta id\n";
+        exit(EXIT_FAILURE);
+    } else {
+        std::cout<<"\nCiclista con Id: "<<id<<" es del equipo: "<<searchTeam<<"\n";
+    }
+
+    return 0;
 }

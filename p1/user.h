@@ -2,7 +2,6 @@
 #define USER_H
 
 #include <string>
-#include <iostream>
 
 class User{
 
@@ -19,41 +18,36 @@ class User{
 
     public:
 
-        User(const std::string id);
-        User(const std::string id, const std::string surname, const std::string name, const std::string nationality, int d, int m, int y);
+    //CONSTRUCTORES
 
-        //*****************//
-        //*****GETTERS*****//
-        //*****************//
+        User(std::string id);
+        User(std::string id, std::string surname, std::string name, std::string nationality, int d, int m, int y);
+
+    //GETTERS
 
         std::string GetId(){return id_;}
         std::string GetSurname(){return surname_;}
         std::string GetName(){return name_;}
         std::string GetNationality(){return nationality_;}
-        int GetDay(){return d_;}
-        int GetMonth(){return m_;}
-        int GetYear(){return y_;}
+        int GetD(){return d_;}
+        int GetM(){return m_;}
+        int GetY(){return y_;}
         bool GetComplete(){return complete_;}
 
-        //*****************//
-        //*****SETTERS*****//
-        //*****************//
+    //SETTERS
 
         bool SetId(std::string id);
         bool SetSurname(std::string surname);
         bool SetName(std::string name);
         bool SetNationality(std::string nationality);
-        bool SetDay(int d);
-        bool SetMonth(int m);
-        bool SetYear(int y);
-
+        bool SetD(int d);
+        bool SetM(int m);
+        bool SetY(int y);
+        
         std::string GetFullData();
-
 };
 
-//Declaracion de funciones en el programa
-
-User ReadUserFromConsole();
-void PrintUserFromConsole(User &Usuario);
+User ReadFromConsole();
+void PrintfFromConsole(User &Usuario);
 
 #endif

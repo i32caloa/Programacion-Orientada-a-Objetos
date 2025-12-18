@@ -24,6 +24,7 @@ target_link_libraries(catalog-test
  PRIVATE GTest::gtest_main catalog)
 gtest_discover_tests(catalog-test)
 
+#testing stage library
 add_executable(stage-test stage-test.cc)
 target_link_libraries(stage-test
  PRIVATE GTest::gtest_main stage)
